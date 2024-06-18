@@ -97,7 +97,7 @@ interface RequestQuery {
     take?: string;
 }
 
-blogRouter.get('/bulk', async (c) => {
+blogRouter.get('/blogs', async (c) => {
 	const queryParams = c.req.query as RequestQuery;
 
     const skip = parseInt(queryParams.skip || '0', 10);
