@@ -16,6 +16,7 @@ export const blogRouter = new Hono<{
 
 blogRouter.use("/*", async (c, next) => {
     const authHeader = c.req.header("authorization") || "";
+    console.log(authHeader)
     try {
         const user = await verify(authHeader, c.env.JWT_SECRET);
         if (user) {
@@ -97,7 +98,7 @@ interface RequestQuery {
     take?: string;
 }
 
-blogRouter.get('/blogs', async (c) => {
+blogRouter.get('/bulk', async (c) => {
 	const queryParams = c.req.query as RequestQuery;
 
     const skip = parseInt(queryParams.skip || '0', 10);

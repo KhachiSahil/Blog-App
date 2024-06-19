@@ -14,18 +14,13 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
     async function sendRequest() {
         try {
-            console.log('BACKEND_URL:', BACKEND_URL); // Debugging: Log the BACKEND_URL
-            const endpoint = type === "signup" ? "signup" : "signin";
-            const url = `${BACKEND_URL}/api/v1/user/${endpoint}`;
-            console.log('Request URL:', url); // Debugging: Log the constructed URL
-
-            const response = await axios.post(url, postInputs);
-            const jwt = response.data.token;
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);
+            const jwt = response.data;
             localStorage.setItem("token", jwt);
             navigate("/blogs");
-        } catch (e) {
-            console.log(e);
-            alert(`Error while ${type === "signup" ? "signing up" : "signing in"}`);
+        } catch(e) {
+            alert("Error while signing up")
+            // alert the user here that the request failed
         }
     }
 

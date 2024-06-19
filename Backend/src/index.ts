@@ -11,7 +11,7 @@ export const app = new Hono<{
 }>();
 
 app.use('/*', cors({
-  origin: 'https://blog-app-rose-one.vercel.app', 
+  origin: ['https://blog-app-rose-one.vercel.app', 'http://localhost:5173'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));
